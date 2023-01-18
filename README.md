@@ -1,6 +1,6 @@
-Requisitos:
+# Requisitos:
 
-Parte 1:
+## Parte 1:
 
 Usando springboot (java) desenvolva um REST controller, com um endpoint POST que receba um body JSON com os seguintes campos:
 {cnpj: string, faturamento: number, taxaDebito: number, taxaCredito: number, rr: boolean}
@@ -8,7 +8,7 @@ Usando springboot (java) desenvolva um REST controller, com um endpoint POST que
 O endpoint deve validar a obrigatoriedade de TODOS os campos e devolver um status 200 se tudo estiver OK, 
 caso contrário, retornar status 500
 
-Parte 2:
+## Parte 2:
 
 1. Disponibilizar o projeto anterior no git e continuar com as melhorias a seguir
 2. Adicionar campo codigoMcc no JSON de REQUEST do POST, deve ser um Inteiro OBRIGATÓRIO
