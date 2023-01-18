@@ -11,16 +11,14 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = TaxaParcValidator.class)
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TaxaParcConstraint {
-	
-	Class<?>[] groups() default { };
-	
-	Class<? extends Payload>[] payload() default { };
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 
 	String message() default "{ }";
-
-	
 
 }

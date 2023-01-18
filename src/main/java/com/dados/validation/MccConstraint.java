@@ -11,20 +11,14 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = MccValidator.class)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MccConstraint {
-	
-	
-	
-	Class<?>[] groups() default { };
-	
-	Class<? extends Payload>[] payload() default { };
 
-	String message() default"{ }";
-	
+	Class<?>[] groups() default {};
 
-	
+	Class<? extends Payload>[] payload() default {};
 
+	String message() default "{ }";
 
 }

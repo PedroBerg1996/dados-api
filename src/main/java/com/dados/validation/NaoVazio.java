@@ -11,15 +11,14 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = NaoVazioValidator.class)
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NaoVazio {
-	
-	Class<?>[] groups() default { };
-	
-	Class<? extends Payload>[] payload() default { };
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 
 	String message() default "{ }";
-	
-	
+
 }

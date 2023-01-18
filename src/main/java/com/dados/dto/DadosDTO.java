@@ -2,37 +2,30 @@ package com.dados.dto;
 
 import java.text.NumberFormat;
 
-
-
-
 import org.hibernate.validator.constraints.br.CNPJ;
-
 
 import com.dados.validation.MccConstraint;
 import com.dados.validation.NaoVazio;
 import com.dados.validation.NaoVazioFat;
 
-
 public class DadosDTO {
-	
+
 	private Long id;
 	@CNPJ
 	private String cnpj;
 	@NaoVazioFat
 	private Float faturamento;
-	
+
 	private Float taxaDebito;
-	
+
 	private Float taxaCredito;
-	
+
 	private Float taxaParcelado;
 	@NaoVazio
 	private Boolean rr;
 	@MccConstraint
 	private Integer codigoMcc;
-	
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -99,114 +92,18 @@ public class DadosDTO {
 
 	@Override
 	public String toString() {
-		return "Dados [Id = " + id + ", cnpj=" +  cnpj.substring(0, 2) + "." + cnpj.substring(2, 5) + 
-				"." + cnpj.substring(5, 8) + "/" + cnpj.substring(8, 12) + "-" + cnpj.substring(12) + 
-				", faturamento=" + NumberFormat.getCurrencyInstance().format(faturamento) + ", taxaDebito=" + taxaDebito + "%"
-				+ ", taxaCredito=" + taxaCredito + "%" + ", taxaParcelado=" + taxaParcelado + "%" + 
-				", rr=" + rrIsTrue(rr) + ", numeroMcc=" + codigoMcc + "] \n";
+		return "Dados [Id = " + this.id + ", cnpj=" + this.cnpj.substring(0, 2) + "." + this.cnpj.substring(2, 5) + "."
+				+ this.cnpj.substring(5, 8) + "/" + this.cnpj.substring(8, 12) + "-" + this.cnpj.substring(12)
+				+ ", faturamento=" + NumberFormat.getCurrencyInstance().format(this.faturamento) + ", taxaDebito="
+				+ this.taxaDebito + "%" + ", taxaCredito=" + this.taxaCredito + "%" + ", taxaParcelado="
+				+ this.taxaParcelado + "%" + ", rr=" + this.rrIsTrue(this.rr) + ", numeroMcc=" + this.codigoMcc
+				+ "] \n";
 	}
-	
-//	:(
+
 	public String rrIsTrue(Boolean rr) {
 		if (rr == true) {
 			return "Possui RR";
-		}else return "Não possui RR";
-	} 	
-	
-}	
-	
-	
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-
-		
-		
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-		
-		
-		
-		
-		
-		
-			
-		
-		
-		
-		
-		
-
-
-	
-	
-	
-	
-
-	
-
-
-
-
-
-
-
-
-
-		
-		
-		
-		
-		
-		
-			
-		
-		
-	
-	
-	
-	
-	
-
-		
-		
-		
-		
-	
-	
-
-
-
-	
-	
-	
-	
-	
-
+		} else
+			return "Não possui RR";
+	}
+}

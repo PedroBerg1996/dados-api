@@ -11,16 +11,14 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = TaxaDebValidator.class)
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TaxaDebConstraint {
-	
-	Class<?>[] groups() default { };
-	
-	Class<? extends Payload>[] payload() default { };
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 
 	String message() default "{ }";
-
-	
 
 }
