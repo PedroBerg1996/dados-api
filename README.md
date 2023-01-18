@@ -14,8 +14,11 @@ caso contrário, retornar status 500
 2. Adicionar campo codigoMcc no JSON de REQUEST do POST, deve ser um Inteiro OBRIGATÓRIO
 3. Passar a validar o CNPJ informado no POST (validação de dígito verificador), caso inválido, retornar 403
 4. Passar a validar taxas de acordo com o faturamento ( além de ser obrigatório, as taxas informadas no post não podem ser maiores que as minimas, nem maiores que as máximas) em caso de falha, retornar 500
+
     4.1 Taxas minimas (deb, cred, parc) 1.0, 1.5 e 2.0 aumentar o minimo em 0.2 a cada R$5000 de faturamento
+    
     4.1 Taxas maximas (deb, cred, parc) 7.0, 6.5 e 12.0 aumentar o maximo em 0.1 a cada R$5000 de faturamento
+    
 5. Salvar os dados recebidos do POST em arquivo TXT (multiplos registros) *será necessário criar um identificador único para cada registro
 6. Criar endpoint GET para LISTAR os registros do arquivo em JSON, nessa lista os campos devem estar em string e formatados, campos de taxa (xx,xx%), o campo de CNPJ com máscara padrão, faturamento com máscara de real, e o campo boolean de RR deve ser substituido por um string "Possui RR" ou "Não possui RR"
 7. Criar endpoint PATCH para atualizar SOMENTE os campos de taxa de um registro ( todas as regras do post se aplicam )
