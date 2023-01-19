@@ -50,7 +50,7 @@ public class TaxaParcValidator implements ConstraintValidator<TaxaParcConstraint
 
 	public Float calcTaxaParcMax(Dados dados) {
 		if (dados.getFaturamento() <= 5000) {
-			return this.taxaParcMax;
+			return taxaParcMax;
 		} else
 			return taxaParcMax + taxaMaxAdicional(dados);
 	}

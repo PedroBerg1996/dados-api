@@ -30,17 +30,17 @@ public class DadosController {
 
 	@PostMapping
 	public DadosDTO postDados(@Valid @RequestBody DadosDTO dadosDTO) throws IOException {
-		Dados dados = this.dadosService.dtoToEntity(dadosDTO);
+		Dados dados = dadosService.dtoToEntity(dadosDTO);
 		dadosService.postDados(dados);
-		DadosDTO postedDados = this.dadosService.entityToDTO(dados);
+		DadosDTO postedDados = dadosService.entityToDTO(dados);
 		dadosService.writefile(postedDados);
 		return postedDados;
 	}
 
 	@GetMapping
 	public String getAll() {
-		List<Dados> dadosList = this.dadosService.getAll();
-		List<DadosDTO> dtoList = this.dadosService.dadosToDTOList(dadosList);
+		List<Dados> dadosList = dadosService.getAll();
+		List<DadosDTO> dtoList = dadosService.dadosToDTOList(dadosList);
 		return dtoList.toString();
 	}
 

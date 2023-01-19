@@ -30,7 +30,7 @@ public class DadosService {
 	}
 
 	public Dados dtoToEntity(DadosDTO dadosDTO) {
-		Dados dados = this.modelMapper.map(dadosDTO, Dados.class);
+		Dados dados = modelMapper.map(dadosDTO, Dados.class);
 		return dados;
 	}
 
@@ -41,13 +41,13 @@ public class DadosService {
 	}
 
 	public List<Dados> getAll() {
-		List<Dados> dadosList = this.dadosRepository.findAll();
+		List<Dados> dadosList = dadosRepository.findAll();
 		return dadosList;
 
 	}
 
 	public Dados postDados(Dados dados) {
-		return this.dadosRepository.save(dados);
+		return dadosRepository.save(dados);
 	}
 
 	public void writefile(DadosDTO dadosDTO) throws IOException {

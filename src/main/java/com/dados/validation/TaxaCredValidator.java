@@ -45,7 +45,7 @@ public class TaxaCredValidator implements ConstraintValidator<TaxaCredConstraint
 			return taxaCredMin;
 
 		} else
-			return this.taxaCredMin + taxaMinAdicional(dados);
+			return taxaCredMin + taxaMinAdicional(dados);
 
 	}
 
