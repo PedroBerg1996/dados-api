@@ -45,9 +45,11 @@ public class DadosController {
 	}
 
 	@PatchMapping("/{id}")
-	public PatchDTO patchTaxas(@Valid @PathVariable Long id, @RequestBody PatchDTO patchDTO) {
-
+	public PatchDTO patchTaxas(@Valid @PathVariable Long id, @RequestBody PatchDTO patchDTO) throws IOException {
 		dadosService.patchTaxas(id, patchDTO);
+		List<Dados> dadosList = dadosService.getAll();
+		List<DadosDTO> dtoList = dadosService.dadosToDTOList(dadosList);
+		dadosService.editFile(dtoList);
 		return patchDTO;
 	}
 

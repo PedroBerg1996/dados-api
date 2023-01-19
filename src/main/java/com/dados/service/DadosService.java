@@ -57,11 +57,20 @@ public class DadosService {
 	}
 
 	public void patchTaxas(@PathVariable Long id, PatchDTO patchDTO) {
-		Dados dados = this.dadosRepository.findById(id).get();
+		Dados dados = dadosRepository.findById(id).get();
 		dados.setTaxaDebito(patchDTO.getTaxaDebito());
 		dados.setTaxaCredito(patchDTO.getTaxaCredito());
 		dados.setTaxaParcelado(patchDTO.getTaxaParcelado());
 		dadosRepository.save(dados);
+
+	}
+
+	public void editFile(List<DadosDTO> listDTO) throws IOException {
+		FileWriter fileWriter = new FileWriter("dados.txt");
+		for (DadosDTO patchedDTO : listDTO) {
+			fileWriter.write(patchedDTO.toString());
+		}
+		fileWriter.close();
 	}
 
 }
