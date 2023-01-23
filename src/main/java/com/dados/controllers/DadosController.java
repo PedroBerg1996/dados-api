@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dados.dto.DadosDTO;
 import com.dados.dto.PatchDTO;
+import com.dados.dto.ResponseDTO;
 import com.dados.entities.Dados;
 import com.dados.service.DadosService;
 
@@ -29,19 +30,20 @@ public class DadosController {
 	private DadosService dadosService;
 
 	@PostMapping
-	public DadosDTO postDados(@Valid @RequestBody DadosDTO dadosDTO) throws IOException {
+	public ResponseDTO postDados(@Valid @RequestBody DadosDTO dadosDTO) throws IOException {
 		Dados dados = dadosService.dtoToEntity(dadosDTO);
 		dadosService.postDados(dados);
 		DadosDTO postedDados = dadosService.entityToDTO(dados);
+		ResponseDTO responseDTO = dadosService.entityToReponse(dados);
 		dadosService.writefile(postedDados);
-		return postedDados;
+		return responseDTO;
 	}
 
 	@GetMapping
-	public String getAll() {
+	public List<ResponseDTO> getAll() {
 		List<Dados> dadosList = dadosService.getAll();
-		List<DadosDTO> dtoList = dadosService.dadosToDTOList(dadosList);
-		return dtoList.toString();
+		List<ResponseDTO> responseList = dadosService.dadosToReponseList(dadosList);
+		return responseList;
 	}
 
 	@PatchMapping("/{id}")

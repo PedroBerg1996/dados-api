@@ -12,8 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 public class MccValidator implements ConstraintValidator<MccConstraint, Integer> {
 
 	@Override
-	public boolean isValid(Integer CodigoMcc, ConstraintValidatorContext context) {
-		if (blacklist.contains(CodigoMcc) || CodigoMcc == null) {
+	public boolean isValid(Integer codigoMcc, ConstraintValidatorContext context) {
+		if (blacklist.contains(codigoMcc) || codigoMcc == null) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "MCC inválido");
 		} else
 			return true;

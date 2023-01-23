@@ -105,4 +105,5 @@ public class DadosDTO {
 		} else
 			return "Não possui RR";
 	}
+
 }

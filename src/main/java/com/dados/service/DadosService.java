@@ -8,15 +8,14 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.dados.dto.DadosDTO;
 import com.dados.dto.PatchDTO;
+import com.dados.dto.ResponseDTO;
 import com.dados.entities.Dados;
 import com.dados.repositories.DadosRepository;
 
-@Validated
 @Service
 public class DadosService {
 
@@ -34,6 +33,12 @@ public class DadosService {
 		return dados;
 	}
 
+	public List<ResponseDTO> dadosToReponseList(List<Dados> dadosList) {
+		List<ResponseDTO> responseDtoList = modelMapper.map(dadosList, new TypeToken<List<ResponseDTO>>() {
+		}.getType());
+		return responseDtoList;
+	}
+
 	public List<DadosDTO> dadosToDTOList(List<Dados> dadosList) {
 		List<DadosDTO> dtoList = modelMapper.map(dadosList, new TypeToken<List<DadosDTO>>() {
 		}.getType());
@@ -48,6 +53,11 @@ public class DadosService {
 
 	public Dados postDados(Dados dados) {
 		return dadosRepository.save(dados);
+	}
+
+	public ResponseDTO entityToReponse(Dados dados) {
+		ResponseDTO responseDTO = modelMapper.map(dados, ResponseDTO.class);
+		return responseDTO;
 	}
 
 	public void writefile(DadosDTO dadosDTO) throws IOException {
