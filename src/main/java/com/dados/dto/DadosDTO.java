@@ -2,15 +2,24 @@ package com.dados.dto;
 
 import java.text.NumberFormat;
 
+import javax.validation.constraints.NotBlank;
+
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import com.dados.validation.MccConstraint;
 import com.dados.validation.NaoVazio;
 import com.dados.validation.NaoVazioFat;
+import com.dados.validation.TaxaCredConstraint;
+import com.dados.validation.TaxaDebConstraint;
+import com.dados.validation.TaxaParcConstraint;
 
+@TaxaCredConstraint
+@TaxaParcConstraint
+@TaxaDebConstraint
 public class DadosDTO {
 
 	private Long id;
+	@NotBlank
 	@CNPJ
 	private String cnpj;
 	@NaoVazioFat

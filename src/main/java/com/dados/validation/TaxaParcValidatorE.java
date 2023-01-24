@@ -8,12 +8,12 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.dados.dto.DadosDTO;
+import com.dados.entities.Dados;
 
-public class TaxaParcValidator implements ConstraintValidator<TaxaParcConstraint, DadosDTO> {
+public class TaxaParcValidatorE implements ConstraintValidator<TaxaParcConstraint, Dados> {
 
 	@Override
-	public boolean isValid(DadosDTO dados, ConstraintValidatorContext context) {
+	public boolean isValid(Dados dados, ConstraintValidatorContext context) {
 		if (dados.getTaxaParcelado() < calcTaxaParcMin(dados) || dados.getTaxaParcelado() > calcTaxaParcMax(dados)) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "As taxas parcelado devem estar entre "
 					+ df.format(calcTaxaParcMin(dados)) + "% e " + df.format(calcTaxaParcMax(dados)) + "%");
@@ -26,20 +26,20 @@ public class TaxaParcValidator implements ConstraintValidator<TaxaParcConstraint
 	Float taxaParcMin = 2.0F;
 	Float taxaParcMax = 12.0F;
 
-	public Float taxaMinAdicional(DadosDTO dados) {
+	public Float taxaMinAdicional(Dados dados) {
 		Float multiplicador = (dados.getFaturamento() / 5000);
 		Float adicionalTaxaMin = (float) (Math.floor(multiplicador) * 0.2F);
 		return adicionalTaxaMin;
 	}
 
-	public Float taxaMaxAdicional(DadosDTO dados) {
+	public Float taxaMaxAdicional(Dados dados) {
 		Float multiplicador = (dados.getFaturamento() / 5000);
 		Float adicionalTaxaMax = (float) (Math.floor(multiplicador) * 0.1F);
 		return adicionalTaxaMax;
 
 	}
 
-	public Float calcTaxaParcMin(DadosDTO dados) {
+	public Float calcTaxaParcMin(Dados dados) {
 		if (dados.getFaturamento() <= 5000) {
 			return taxaParcMin;
 
@@ -48,7 +48,7 @@ public class TaxaParcValidator implements ConstraintValidator<TaxaParcConstraint
 
 	}
 
-	public Float calcTaxaParcMax(DadosDTO dados) {
+	public Float calcTaxaParcMax(Dados dados) {
 		if (dados.getFaturamento() <= 5000) {
 			return taxaParcMax;
 		} else

@@ -10,7 +10,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = TaxaDebValidator.class)
+@Constraint(validatedBy = { TaxaDebValidator.class, TaxaDebValidatorE.class })
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TaxaDebConstraint {

@@ -8,12 +8,12 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.dados.dto.DadosDTO;
+import com.dados.entities.Dados;
 
-public class TaxaCredValidator implements ConstraintValidator<TaxaCredConstraint, DadosDTO> {
+public class TaxaCredValidatorE implements ConstraintValidator<TaxaCredConstraint, Dados> {
 
 	@Override
-	public boolean isValid(DadosDTO dados, ConstraintValidatorContext context) {
+	public boolean isValid(Dados dados, ConstraintValidatorContext context) {
 		if (dados.getTaxaCredito() < calcTaxaCredMin(dados) || dados.getTaxaCredito() > calcTaxaCredMax(dados)) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "As taxas credito devem estar entre "
 					+ df.format(calcTaxaCredMin(dados)) + "% e " + df.format(calcTaxaCredMax(dados)) + "%");
@@ -27,20 +27,20 @@ public class TaxaCredValidator implements ConstraintValidator<TaxaCredConstraint
 
 	private static final DecimalFormat df = new DecimalFormat("0.00");
 
-	public Float taxaMinAdicional(DadosDTO dados) {
+	public Float taxaMinAdicional(Dados dados) {
 		Float multiplicador = (dados.getFaturamento() / 5000);
 		Float adicionalTaxaMin = (float) (Math.floor(multiplicador) * 0.2F);
 		return adicionalTaxaMin;
 	}
 
-	public Float taxaMaxAdicional(DadosDTO dados) {
+	public Float taxaMaxAdicional(Dados dados) {
 		Float multiplicador = (dados.getFaturamento() / 5000);
 		Float adicionalTaxaMax = (float) (Math.floor(multiplicador) * 0.1F);
 		return adicionalTaxaMax;
 
 	}
 
-	public Float calcTaxaCredMin(DadosDTO dados) {
+	public Float calcTaxaCredMin(Dados dados) {
 		if (dados.getFaturamento() <= 5000) {
 			return taxaCredMin;
 
@@ -49,7 +49,7 @@ public class TaxaCredValidator implements ConstraintValidator<TaxaCredConstraint
 
 	}
 
-	public Float calcTaxaCredMax(DadosDTO dados) {
+	public Float calcTaxaCredMax(Dados dados) {
 		if (dados.getFaturamento() <= 5000) {
 			return taxaCredMax;
 		} else

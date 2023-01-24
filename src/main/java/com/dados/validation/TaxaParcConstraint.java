@@ -10,7 +10,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = TaxaParcValidator.class)
+@Constraint(validatedBy = { TaxaParcValidator.class, TaxaParcValidatorE.class })
 @Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TaxaParcConstraint {
